@@ -105,7 +105,7 @@ namespace TwitchLib.Unity
         /// <summary>
         /// Fires when bot has disconnected.
         /// </summary>
-        public new event AsyncEventHandler<OnDisconnectedEventArgs> OnDisconnected;
+        public new event AsyncEventHandler<OnDisconnectedArgs> OnDisconnected;
 
         /// <summary>
         /// Forces when bot suffers conneciton error.
@@ -131,16 +131,6 @@ namespace TwitchLib.Unity
         /// Fires when a viewer gets banned by any moderator.
         /// </summary>
         public new event AsyncEventHandler<OnUserBannedArgs> OnUserBanned;
-
-        /// <summary>
-        /// Fires when a list of moderators is received.
-        /// </summary>
-        public new event AsyncEventHandler<OnModeratorsReceivedArgs> OnModeratorsReceived;
-
-        /// <summary>
-        /// Fires when confirmation of a chat color change request was received.
-        /// </summary>
-        public new event AsyncEventHandler<OnChatColorChangedArgs> OnChatColorChanged;
 
         /// <summary>
         /// Fires when data is either received or sent.
@@ -179,7 +169,7 @@ namespace TwitchLib.Unity
         /// <summary>Fires when named event occurs.</summary>
         public new event AsyncEventHandler<OnErrorEventArgs> OnError;
         /// <summary>Fires when named event occurs.</summary>
-        public new event AsyncEventHandler<OnVIPsReceivedArgs> OnVIPsReceived;
+        //public new event AsyncEventHandler<OnVIPsReceivedArgs> OnVIPsReceived;
         /// <summary>Fires when named event occurs.</summary>
         public new event AsyncEventHandler<OnAnnouncementArgs> OnAnnouncement;
         /// <summary>Fires when named event occurs.</summary>
@@ -238,14 +228,12 @@ namespace TwitchLib.Unity
             base.OnContinuedGiftedSubscription += (object sender, OnContinuedGiftedSubscriptionArgs e) => { ThreadDispatcher.Enqueue(() => OnContinuedGiftedSubscription?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnExistingUsersDetected += (object sender, OnExistingUsersDetectedArgs e) => { ThreadDispatcher.Enqueue(() => OnExistingUsersDetected?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnUserLeft += (object sender, OnUserLeftArgs e) => { ThreadDispatcher.Enqueue(() => OnUserLeft?.Invoke(sender, e)); return Task.CompletedTask; };
-            base.OnDisconnected += (object sender, OnDisconnectedEventArgs e) => { ThreadDispatcher.Enqueue(() => OnDisconnected?.Invoke(sender, e)); return Task.CompletedTask; };
+            base.OnDisconnected += (object sender, OnDisconnectedArgs e) => { ThreadDispatcher.Enqueue(() => OnDisconnected?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnConnectionError += (object sender, OnConnectionErrorArgs e) => { ThreadDispatcher.Enqueue(() => OnConnectionError?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnChatCleared += (object sender, OnChatClearedArgs e) => { ThreadDispatcher.Enqueue(() => OnChatCleared?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnUserTimedout += (object sender, OnUserTimedoutArgs e) => { ThreadDispatcher.Enqueue(() => OnUserTimedout?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnLeftChannel += (object sender, OnLeftChannelArgs e) => { ThreadDispatcher.Enqueue(() => OnLeftChannel?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnUserBanned += (object sender, OnUserBannedArgs e) => { ThreadDispatcher.Enqueue(() => OnUserBanned?.Invoke(sender, e)); return Task.CompletedTask; };
-            base.OnModeratorsReceived += (object sender, OnModeratorsReceivedArgs e) => { ThreadDispatcher.Enqueue(() => OnModeratorsReceived?.Invoke(sender, e)); return Task.CompletedTask; };
-            base.OnChatColorChanged += (object sender, OnChatColorChangedArgs e) => { ThreadDispatcher.Enqueue(() => OnChatColorChanged?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnSendReceiveData += (object sender, OnSendReceiveDataArgs e) => { ThreadDispatcher.Enqueue(() => OnSendReceiveData?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnRaidNotification += (object sender, OnRaidNotificationArgs e) => { ThreadDispatcher.Enqueue(() => OnRaidNotification?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnGiftedSubscription += (object sender, OnGiftedSubscriptionArgs e) => { ThreadDispatcher.Enqueue(() => OnGiftedSubscription?.Invoke(sender, e)); return Task.CompletedTask; };
@@ -257,7 +245,7 @@ namespace TwitchLib.Unity
             base.OnMessageCleared += (object sender, OnMessageClearedArgs e) => { ThreadDispatcher.Enqueue(() => OnMessageCleared?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnCommunitySubscription += (object sender, OnCommunitySubscriptionArgs e) => { ThreadDispatcher.Enqueue(() => OnCommunitySubscription?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnError += (object sender, OnErrorEventArgs e) => { ThreadDispatcher.Enqueue(() => OnError?.Invoke(sender, e)); return Task.CompletedTask; };
-            base.OnVIPsReceived += (object sender, OnVIPsReceivedArgs e) => { ThreadDispatcher.Enqueue(() => OnVIPsReceived?.Invoke(sender, e)); return Task.CompletedTask; };
+            //base.OnVIPsReceived += (object sender, OnVIPsReceivedArgs e) => { ThreadDispatcher.Enqueue(() => OnVIPsReceived?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnAnnouncement += (object sender, OnAnnouncementArgs e) => { ThreadDispatcher.Enqueue(() => OnAnnouncement?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnMessageThrottled += (object sender, OnMessageThrottledArgs e) => { ThreadDispatcher.Enqueue(() => OnMessageThrottled?.Invoke(sender, e)); return Task.CompletedTask; };
             base.OnRequiresVerifiedPhoneNumber += (object sender, NoticeEventArgs e) => { ThreadDispatcher.Enqueue(() => OnRequiresVerifiedPhoneNumber?.Invoke(sender, e)); return Task.CompletedTask; };

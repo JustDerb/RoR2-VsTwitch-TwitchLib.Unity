@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>TwitchLib.Unity</PackageId>
     <Version>1.0.4</Version>
     <Description>Unity wrapper system for TwitchLib</Description>
@@ -41,20 +41,29 @@
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   
-  <ItemGroup>
-    <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
-    <PackageReference Include="TwitchLib.Api" Version="3.10.0-preview-1b109f5" />
-    <PackageReference Include="TwitchLib.Client" Version="4.0.0-preview-c1fda4c609b7b91ec8720e20af4dd080ea577bd8" />
-    <PackageReference Include="TwitchLib.PubSub" Version="4.0.0-preview-f833b1ab1ebef37618dba3fbb1e0a661ff183af5" />
-  </ItemGroup>
+
+
+
 
   <ItemGroup>
-    <Reference Include="UnityEditor">
-      <HintPath>..\Assemblies\UnityEditor.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\TwitchLib.Api\TwitchLib.Api\TwitchLib.Api.csproj" />
+    <ProjectReference Include="..\..\TwitchLib.Client\TwitchLib.Client\TwitchLib.Client.csproj" />
+    <ProjectReference Include="..\..\TwitchLib.EventSub.Websockets\TwitchLib.EventSub.Websockets\TwitchLib.EventSub.Websockets.csproj" />
+    <ProjectReference Include="..\..\TwitchLib.PubSub\TwitchLib.PubSub\TwitchLib.PubSub.csproj" />
+  </ItemGroup>
+  
+
+
+
+
+  <ItemGroup>
     <Reference Include="UnityEngine">
-      <HintPath>..\Assemblies\UnityEngine.dll</HintPath>
-      <Private>false</Private>
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\Program Files (x86)\Steam\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

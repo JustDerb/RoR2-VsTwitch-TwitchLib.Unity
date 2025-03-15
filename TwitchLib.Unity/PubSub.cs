@@ -4,6 +4,7 @@ using TwitchLib.PubSub;
 using TwitchLib.PubSub.Interfaces;
 using TwitchLib.PubSub.Events;
 using UnityEngine;
+using Microsoft.Extensions.Logging;
 
 namespace TwitchLib.Unity
 {
@@ -43,7 +44,7 @@ namespace TwitchLib.Unity
         /// <summary>EventHandler for named event.</summary>
         public new event EventHandler<OnR9kBetaOffArgs> OnR9kBetaOff;
         /// <summary>EventHandler for named event.</summary>
-        public new event EventHandler<OnBitsReceivedArgs> OnBitsReceived;
+        //public new event EventHandler<OnBitsReceivedArgs> OnBitsReceived;
         /// <summary>EventHandler for named event.</summary>
         public new event EventHandler<OnStreamUpArgs> OnStreamUp;
         /// <summary>EventHandler for named event.</summary>
@@ -57,7 +58,7 @@ namespace TwitchLib.Unity
         /// <summary>EventHandler for named event.</summary>
         public new event EventHandler<OnChannelExtensionBroadcastArgs> OnChannelExtensionBroadcast;
         /// <summary>EventHandler for named event.</summary>
-        public new event EventHandler<OnFollowArgs> OnFollow;
+        //public new event EventHandler<OnFollowArgs> OnFollow;
         /// <summary>EventHandler for named event.</summary>
         public new event EventHandler<OnCustomRewardCreatedArgs> OnCustomRewardCreated;
         /// <summary>EventHandler for named event.</summary>
@@ -94,7 +95,7 @@ namespace TwitchLib.Unity
         public new event EventHandler<OnAutomodCaughtUserMessage> OnAutomodCaughtUserMessage;
         #endregion
 
-        public PubSub(EndPoint proxy = null) : base(null)
+        public PubSub(ILogger<TwitchPubSub> logger = null) : base(logger)
         {
             ThreadDispatcher.EnsureCreated();
 
@@ -120,7 +121,7 @@ namespace TwitchLib.Unity
             base.OnWhisper += (object sender, OnWhisperArgs e) => { ThreadDispatcher.Enqueue(() => OnWhisper?.Invoke(sender, e)); };
             base.OnChannelSubscription += (object sender, OnChannelSubscriptionArgs e) => { ThreadDispatcher.Enqueue(() => OnChannelSubscription?.Invoke(sender, e)); };
             base.OnChannelExtensionBroadcast += (object sender, OnChannelExtensionBroadcastArgs e) => { ThreadDispatcher.Enqueue(() => OnChannelExtensionBroadcast?.Invoke(sender, e)); };
-            base.OnFollow += (object sender, OnFollowArgs e) => { ThreadDispatcher.Enqueue(() => OnFollow?.Invoke(sender, e)); };
+            //base.OnFollow += (object sender, OnFollowArgs e) => { ThreadDispatcher.Enqueue(() => OnFollow?.Invoke(sender, e)); };
             base.OnCustomRewardCreated += (object sender, OnCustomRewardCreatedArgs e) => { ThreadDispatcher.Enqueue(() => OnCustomRewardCreated?.Invoke(sender, e)); };
             base.OnCustomRewardUpdated += (object sender, OnCustomRewardUpdatedArgs e) => { ThreadDispatcher.Enqueue(() => OnCustomRewardUpdated?.Invoke(sender, e)); };
             base.OnCustomRewardDeleted += (object sender, OnCustomRewardDeletedArgs e) => { ThreadDispatcher.Enqueue(() => OnCustomRewardDeleted?.Invoke(sender, e)); };
